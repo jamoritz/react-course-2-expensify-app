@@ -1,0 +1,9 @@
+.idea
+node_modules
+package-lock.json
+**/public/bundle.js
+**/public/bundle.js.map
+**/public/styles.css
+**/public/styles.css.map
+**/public/scripts/app.js
+

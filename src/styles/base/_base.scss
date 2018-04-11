@@ -1,0 +1,43 @@
+html {
+    font-size: 62.5%;
+}
+
+body {
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: $medium-size;
+}
+
+button {
+    cursor: pointer;
+
+   &:disabled {
+       cursor: default;
+   }
+}
+
+.is-active {
+    font-weight: bold;
+}
+
+.nav {
+    margin-bottom: 1rem;
+
+    &__link {
+        display: inline-block;
+
+        &:not(:last-of-type) {
+            &::after {
+                content: "\00a0|\00a0"; // &nbsp;|&nbsp;
+                font-weight: bold;
+            }
+        }
+    }
+}
+
+.error {
+    border-color: $error-border-color;
+}
+
+.error-msg {
+    color: $error-fg-color;
+}
