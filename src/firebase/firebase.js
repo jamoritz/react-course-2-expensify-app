@@ -13,7 +13,22 @@ const config = {
 
 firebase.initializeApp(config);
 
-firebase
-    .database()
-    .ref()
-    .set({ name: 'Jeff Moritz' });
+const database = firebase.database();
+
+database.ref().set({
+    name: 'Jeff Moritz',
+    age: 69,
+    isSingle: false,
+    location: {
+        city: 'Rohnert Park',
+        country: 'United States'
+    }
+});
+
+// database.ref().set('This is my data');
+
+database.ref('age').set(70);
+database.ref('location/state').set('California');
+
+database.ref('attributes/height').set('5-ft - 10-in');
+database.ref('attributes/weight').set('212.8 lbs');
