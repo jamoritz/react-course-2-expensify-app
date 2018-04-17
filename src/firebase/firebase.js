@@ -15,20 +15,47 @@ firebase.initializeApp(config);
 
 const database = firebase.database();
 
-database.ref().set({
-    name: 'Jeff Moritz',
-    age: 69,
-    isSingle: false,
-    location: {
-        city: 'Rohnert Park',
-        country: 'United States'
-    }
-});
+// database
+//     .ref()
+//     .set({
+//         name: 'Jeff Moritz',
+//         age: 69,
+//         isSingle: false,
+//         location: {
+//             city: 'Rohnert Park',
+//             country: 'United States'
+//         }
+//     })
+//     .then(() => {
+//         console.log('Initial data has been saved.');
+//     })
+//     .catch((error) => {
+//         console.warn('Error setting the initial data.', error);
+//     });
 
 // database.ref().set('This is my data');
 
-database.ref('age').set(70);
-database.ref('location/state').set('California');
+// database
+//     .ref('attributes')
+//     .set({
+//         height: '5-ft - 10-in',
+//         weight: '212.8 lbs'
+//     })
+//     .then(() => {
+//         console.log('Successfully set the height and weight.');
+//     })
+//     .catch((error) => {
+//         console.warn('Error setting the height and weight.', error);
+//     });
 
-database.ref('attributes/height').set('5-ft - 10-in');
-database.ref('attributes/weight').set('212.8 lbs');
+// console.log('I made a request to change the data.');
+
+database
+    .ref('isSingle')
+    .remove()
+    .then(() => {
+        console.log('Successfully removed the isSingle member.');
+    })
+    .catch((error) => {
+        console.warn('Error when attempting to remove the isSingle member.', error);
+    });
