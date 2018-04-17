@@ -11,6 +11,8 @@ import configureStore from './store/configureStore';
 
 import './styles/styles.scss';
 
+import './firebase/firebase';
+
 const store = configureStore();
 
 const jsx = (
