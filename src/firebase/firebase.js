@@ -20,7 +20,11 @@ database
     .set({
         name: 'Jeff Moritz',
         age: 69,
-        isSingle: false,
+        stressLevel: 6,
+        job: {
+            title: 'Software Developer',
+            company: 'Google'
+        },
         location: {
             city: 'Rohnert Park',
             country: 'United States'
@@ -50,15 +54,78 @@ database
 
 // console.log('I made a request to change the data.');
 
-// Preferred way to remove data
+// // Preferred way to remove data
+// database
+//     .ref('isSingle')
+//     .remove()
+//     .then(() => {
+//         console.log('Successfully removed the isSingle member.');
+//     })
+//     .catch((error) => {
+//         console.warn('Error when attempting to remove the isSingle member.', error);
+//     });
+//
+// // database.ref('isSingle').set(null); // This works to remove the object too
+
+// database
+//     .ref()
+//     .update({
+//         name: 'Mike',
+//         age: 29,
+//         job: 'Software Developer',
+//         isSingle: null
+//     })
+//     .then(() => {
+//         console.log('Successfully changed the name and age.');
+//     })
+//     .catch((error) => {
+//         console.warn('Error setting the name and age.', error);
+//     });
+
+// // This doesn't work as expected -- it loses the country
+// // Because 'update' only works at the root level (not at the nested level)
+// database
+//     .ref()
+//     .update({
+//         job: 'Manager',
+//         location: {
+//             city: 'Boston'
+//         }
+//     })
+//     .then(() => {
+//         console.log('Successfully changed the name and age.');
+//     })
+//     .catch((error) => {
+//         console.warn('Error setting the name and age.', error);
+//     });
+
+// // This does work as expected
+// database
+//     .ref()
+//     .update({
+//         job: 'Manager',
+//         'location/city': 'Boston'
+//     })
+//     .then(() => {
+//         console.log('Successfully changed the name and age.');
+//     })
+//     .catch((error) => {
+//         console.warn('Error setting the name and age.', error);
+//     });
+
 database
-    .ref('isSingle')
-    .remove()
+    .ref()
+    .update({
+        stressLevel: 9,
+        'job/company': 'Amazon',
+        'location/city': 'Seattle'
+    })
     .then(() => {
-        console.log('Successfully removed the isSingle member.');
+        console.log('Successfully updated stressLevel, job/company, and location/city.');
     })
     .catch((error) => {
-        console.warn('Error when attempting to remove the isSingle member.', error);
+        console.log(
+            'Encountered an error while updated stressLevel, job/company, and location/city.',
+            error
+        );
     });
-
-// database.ref('isSingle').set(null); // This works to remove the object too
