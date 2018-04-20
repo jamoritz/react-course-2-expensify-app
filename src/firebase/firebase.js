@@ -15,42 +15,119 @@ firebase.initializeApp(config);
 
 const database = firebase.database();
 
-database
-    .ref()
-    .set({
-        name: 'Jeff Moritz',
-        age: 69,
-        stressLevel: 6,
-        job: {
-            title: 'Software Developer',
-            company: 'Google'
-        },
-        location: {
-            city: 'Rohnert Park',
-            country: 'United States'
-        }
-    })
-    .then(() => {
-        console.log('Initial data has been saved.');
-    })
-    .catch((error) => {
-        console.warn('Error setting the initial data.', error);
-    });
+const onValueChange = database.ref().on(
+    'value',
+    (snapshot) => {
+        const val = snapshot.val();
+        // console.log(val);
+        console.log(`${val.name} is a ${val.job.title} at ${val.job.company}.`);
+    },
+    (error) => {
+        console.log('Error when fetching data.', error);
+    }
+);
+
+setTimeout(() => {
+    database
+        .ref()
+        .update({
+            name: 'Steve Kelez',
+            'job/company': 'Computer Recycling Center',
+            'job/title': 'Salesperson'
+        })
+        .then(() => {
+            console.log('Successfully changed the name, job title and company.');
+        })
+        .catch((error) => {
+            console.warn('Error setting the name, job title and company.', error);
+        });
+}, 5000);
+
+setTimeout(() => {
+    database
+        .ref()
+        .update({
+            name: 'Jeff Moritz',
+            'job/company': 'Amazon',
+            'job/title': 'Software Engineer'
+        })
+        .then(() => {
+            console.log('Successfully changed the name, job title and company.');
+        })
+        .catch((error) => {
+            console.warn('Error setting the name, job title and company.', error);
+        });
+}, 10000);
+
+// const onValueChange = database.ref().on(
+//     'value',
+//     (snapshot) => {
+//         console.log(snapshot.val());
+//     },
+//     (error) => {
+//         console.log('Error with data fetching.', error);
+//     }
+// );
+
+// setTimeout(() => {
+//     database.ref('age').set(29);
+// }, 3500);
+//
+// setTimeout(() => {
+//     database.ref().off(onValueChange);
+// }, 7000);
+//
+// setTimeout(() => {
+//     database.ref('age').set(30);
+// }, 10500);
+
+// database
+//     .ref()
+//     .once('value')
+//     .then((snapshot) => {
+//         const val = snapshot.val();
+//         console.log(val);
+//     })
+//     .catch((error) => {
+//         console.log('Error fetching data', error);
+//     });
+
+// database
+//     .ref()
+//     .set({
+//         name: 'Jeff Moritz',
+//         age: 69,
+//         stressLevel: 6,
+//         job: {
+//             title: 'Software Developer',
+//             company: 'Google'
+//         },
+//         location: {
+//             city: 'Rohnert Park',
+//             country: 'United States'
+//         }
+//     })
+//     .then(() => {
+//         console.log('Initial data has been saved.');
+//     })
+//     .catch((error) => {
+//         console.warn('Error setting the initial data.', error);
+//     });
 
 // database.ref().set('This is my data');
 
-database
-    .ref('attributes')
-    .set({
-        height: '5-ft - 10-in',
-        weight: '212.8 lbs'
-    })
-    .then(() => {
-        console.log('Successfully set the height and weight.');
-    })
-    .catch((error) => {
-        console.warn('Error setting the height and weight.', error);
-    });
+// database
+//     .ref('attributes')
+//     .set({
+//         height: '5-ft - 10-in',
+//         weight: '212.8 lbs'
+//     })
+//     .then(() => {
+//         console.log('Successfully set the height and weight.');
+//     })
+//     .catch((error) => {
+//         console.warn('Error setting the height and weight.', error);
+//     });
 
 // console.log('I made a request to change the data.');
 
@@ -113,19 +190,19 @@ database
 //         console.warn('Error setting the name and age.', error);
 //     });
 
-database
-    .ref()
-    .update({
-        stressLevel: 9,
-        'job/company': 'Amazon',
-        'location/city': 'Seattle'
-    })
-    .then(() => {
-        console.log('Successfully updated stressLevel, job/company, and location/city.');
-    })
-    .catch((error) => {
-        console.log(
-            'Encountered an error while updated stressLevel, job/company, and location/city.',
-            error
-        );
-    });
+// database
+//     .ref()
+//     .update({
+//         stressLevel: 9,
+//         'job/company': 'Amazon',
+//         'location/city': 'Seattle'
+//     })
+//     .then(() => {
+//         console.log('Successfully updated stressLevel, job/company, and location/city.');
+//     })
+//     .catch((error) => {
+//         console.log(
+//             'Encountered an error while updated stressLevel, job/company, and location/city.',
+//             error
+//         );
+//     });
