@@ -15,49 +15,113 @@ firebase.initializeApp(config);
 
 const database = firebase.database();
 
-const onValueChange = database.ref().on(
-    'value',
-    (snapshot) => {
-        const val = snapshot.val();
-        // console.log(val);
-        console.log(`${val.name} is a ${val.job.title} at ${val.job.company}.`);
+// Setup "expenses" with three items (description, note, amount, createdAt)
+
+const expenses = [
+    {
+        description: 'Buy food',
+        amount: '12345',
+        note: 'For Sparky',
+        createdAt: 1000
     },
-    (error) => {
-        console.log('Error when fetching data.', error);
+    {
+        description: 'Rent',
+        amount: '136247',
+        note: 'For April',
+        createdAt: 10000
+    },
+    {
+        description: 'P.G.E.',
+        amount: '20749',
+        note: 'For May',
+        createdAt: 100000
     }
-);
+];
 
-setTimeout(() => {
-    database
-        .ref()
-        .update({
-            name: 'Steve Kelez',
-            'job/company': 'Computer Recycling Center',
-            'job/title': 'Salesperson'
-        })
-        .then(() => {
-            console.log('Successfully changed the name, job title and company.');
-        })
-        .catch((error) => {
-            console.warn('Error setting the name, job title and company.', error);
-        });
-}, 5000);
+expenses.map((expense) => {
+    database.ref('expenses').push(expense);
+});
 
-setTimeout(() => {
-    database
-        .ref()
-        .update({
-            name: 'Jeff Moritz',
-            'job/company': 'Amazon',
-            'job/title': 'Software Engineer'
-        })
-        .then(() => {
-            console.log('Successfully changed the name, job title and company.');
-        })
-        .catch((error) => {
-            console.warn('Error setting the name, job title and company.', error);
-        });
-}, 10000);
+// database.ref('notes/-LA_ItehwstoXrP9DI6y').update({
+//     body: 'Buy food'
+// });
+
+// database.ref('notes').push({
+//     title: 'To Do',
+//     body: 'Go for a run'
+// });
+
+// const firebaseNotes = {
+//     notes: {
+//         apoijasdf: {
+//             title: 'First note!',
+//             body: 'This is my note'
+//         },
+//         apoijsdfpoijwe: {
+//             title: 'Another note',
+//             body: 'This is my note'
+//         }
+//     }
+// };
+//
+// const notes = [
+//     {
+//         id: '12',
+//         title: 'First note!',
+//         body: 'This is my note'
+//     },
+//     {
+//         id: '761ase',
+//         title: 'Another note',
+//         body: 'This is my note'
+//     }
+// ];
+//
+// database.ref('notes').set(notes);
+
+// const onValueChange = database.ref().on(
+//     'value',
+//     (snapshot) => {
+//         const val = snapshot.val();
+//         // console.log(val);
+//         console.log(`${val.name} is a ${val.job.title} at ${val.job.company}.`);
+//     },
+//     (error) => {
+//         console.log('Error when fetching data.', error);
+//     }
+// );
+//
+// setTimeout(() => {
+//     database
+//         .ref()
+//         .update({
+//             name: 'Steve Kelez',
+//             'job/company': 'Computer Recycling Center',
+//             'job/title': 'Salesperson'
+//         })
+//         .then(() => {
+//             console.log('Successfully changed the name, job title and company.');
+//         })
+//         .catch((error) => {
+//             console.warn('Error setting the name, job title and company.', error);
+//         });
+// }, 5000);
+//
+// setTimeout(() => {
+//     database
+//         .ref()
+//         .update({
+//             name: 'Jeff Moritz',
+//             'job/company': 'Amazon',
+//             'job/title': 'Software Engineer'
+//         })
+//         .then(() => {
+//             console.log('Successfully changed the name, job title and company.');
+//         })
+//         .catch((error) => {
+//             console.warn('Error setting the name, job title and company.', error);
+//         });
+// }, 10000);
 
 // const onValueChange = database.ref().on(
 //     'value',
