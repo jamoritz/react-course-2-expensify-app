@@ -15,32 +15,72 @@ firebase.initializeApp(config);
 
 const database = firebase.database();
 
-// Setup "expenses" with three items (description, note, amount, createdAt)
-
-const expenses = [
-    {
-        description: 'Buy food',
-        amount: '12345',
-        note: 'For Sparky',
-        createdAt: 1000
-    },
-    {
-        description: 'Rent',
-        amount: '136247',
-        note: 'For April',
-        createdAt: 10000
-    },
-    {
-        description: 'P.G.E.',
-        amount: '20749',
-        note: 'For May',
-        createdAt: 100000
-    }
-];
-
-expenses.map((expense) => {
-    database.ref('expenses').push(expense);
+// child_removed event
+database.ref('expenses').on('child_removed', (snapshot) => {
+    console.log('child removed: ', snapshot.key, snapshot.val());
 });
+
+// child_changed event
+database.ref('expenses').on('child_changed', (snapshot) => {
+    console.log('child changed: ', snapshot.key, snapshot.val());
+});
+
+// child_added event
+database.ref('expenses').on('child_added', (snapshot) => {
+    console.log('child added: ', snapshot.key, snapshot.val());
+});
+
+// database.ref('expenses').on('value', (snapshot) => {
+//     // console.log(snapshot.val());
+//     const expenses = [];
+//     snapshot.forEach((childSnapshot) => {
+//         expenses.push({
+//             id: childSnapshot.key,
+//             ...childSnapshot.val()
+//         });
+//     });
+//     console.log(expenses);
+// });
+
+// database
+//     .ref('expenses')
+//     .once('value')
+//     .then((snapshot) => {
+//         // console.log(snapshot.val());
+//         const expenses = [];
+//         snapshot.forEach((childSnapshot) => {
+//             expenses.push({
+//                 id: childSnapshot.key,
+//                 ...childSnapshot.val()
+//             });
+//         });
+//         console.log(expenses);
+//     });
+
+// const expenses = [
+//     {
+//         description: 'Buy food',
+//         amount: '12345',
+//         note: 'For Sparky',
+//         createdAt: 1000
+//     },
+//     {
+//         description: 'Rent',
+//         amount: '136247',
+//         note: 'For April',
+//         createdAt: 10000
+//     },
+//     {
+//         description: 'P.G.E.',
+//         amount: '20749',
+//         note: 'For May',
+//         createdAt: 100000
+//     }
+// ];
+//
+// expenses.map((expense) => {
+//     database.ref('expenses').push(expense);
+// });
 
 // database.ref('notes/-LA_ItehwstoXrP9DI6y').update({
 //     body: 'Buy food'
