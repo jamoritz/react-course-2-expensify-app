@@ -12,6 +12,7 @@ import configureStore from './store/configureStore';
 import './styles/styles.scss';
 
 import './firebase/firebase';
+// import './playground/promises';
 
 const store = configureStore();
 
