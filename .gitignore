@@ -9,4 +9,3 @@ package-lock.json
 **/public/scripts/app.js
 .env.development
 .env.test
-
