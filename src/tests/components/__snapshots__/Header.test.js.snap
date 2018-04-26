@@ -13,7 +13,7 @@ exports[`should render Header correctly 1`] = `
       ariaCurrent="true"
       className="nav__link"
       exact={true}
-      to="/"
+      to="/dashboard"
     >
       Dashboard
     </NavLink>
