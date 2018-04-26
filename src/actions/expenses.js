@@ -10,11 +10,12 @@ export const addExpense = (expense) => ({
 });
 
 export const startAddExpense = (expenseData = {}) => {
-    return (dispatch) => {
+    return (dispatch, getState) => {
+        const uid = getState().auth.uid;
         const { description = '', note = '', amount = 0, createdAt = 0 } = expenseData;
         const expense = { description, note, amount, createdAt };
         return database
-            .ref('expenses')
+            .ref(`users/${uid}/expenses`)
             .push(expense)
             .then((ref) => {
                 dispatch(
@@ -31,9 +32,10 @@ export const startAddExpense = (expenseData = {}) => {
 export const removeExpense = ({ id } = {}) => ({ type: 'REMOVE_EXPENSE', id });
 
 export const startRemoveExpense = ({ id } = {}) => {
-    return (dispatch) => {
+    return (dispatch, getState) => {
+        const uid = getState().auth.uid;
         return database
-            .ref(`expenses/${id}`)
+            .ref(`users/${uid}/expenses/${id}`)
             .remove()
             .then(() => {
                 dispatch(removeExpense({ id }));
@@ -45,9 +47,10 @@ export const startRemoveExpense = ({ id } = {}) => {
 export const editExpense = (id, updates) => ({ type: 'EDIT_EXPENSE', id, updates });
 
 export const startEditExpense = (id, updates) => {
-    return (dispatch) => {
+    return (dispatch, getState) => {
+        const uid = getState().auth.uid;
         return database
-            .ref(`expenses/${id}`)
+            .ref(`users/${uid}/expenses/${id}`)
             .update(updates)
             .then(() => {
                 dispatch(editExpense(id, updates));
@@ -62,9 +65,10 @@ export const setExpenses = (expenses) => ({
 });
 
 export const startSetExpenses = () => {
-    return (dispatch) => {
+    return (dispatch, getState) => {
+        const uid = getState().auth.uid;
         return database
-            .ref('expenses')
+            .ref(`users/${uid}/expenses`)
             .once('value')
             .then((snapshot) => {
                 const expenses = [];

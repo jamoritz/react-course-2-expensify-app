@@ -14,7 +14,7 @@
         "build:dev": "webpack --color",
         "build:prod": "webpack -p --env production",
         "dev-server": "webpack-dev-server --color",
-        "test": "cross-env NODE_ENV=text jest --config=jest.config.json --color",
+        "test": "cross-env NODE_ENV=text jest --config=jest.config.json",
         "webpack:help": "webpack --help",
         "start": "node server/server.js",
         "heroku-postbuild": "yarn run build:prod"
