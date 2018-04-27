@@ -1,0 +1,35 @@
+.box-layout {
+    align-items: center;
+    background: url('/images/bg.jpg');
+    background-size: cover;
+    display: flex;
+    height: 100vh;
+    justify-content: center;
+    width: 100vw;
+
+    &__box {
+        align-items: center;
+        background: rgba($dialog-bg-color, 0.85);
+        border-radius: 0.3rem;
+        display: flex;
+        flex-direction: column;
+        padding: $large-size $medium-size;
+        text-align: center;
+        width: 25rem;
+    }
+
+    &__title {
+        line-height: 1;
+        margin: 0 0 $medium-size 0;
+    }
+}
+
+.button {
+    background-color: $button-bg-color;
+    border: none;
+    color: $button-fg-color;
+    font-size: 1.8rem;
+    font-weight: 300;
+    padding: 1.2rem;
+    text-decoration: none;
+}
