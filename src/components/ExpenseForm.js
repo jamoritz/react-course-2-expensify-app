@@ -99,17 +99,23 @@ export default class ExpenseForm extends React.Component {
                 {this.state.errorMsg && <p className="error-msg">{this.state.errorMsg}</p>}
                 <form onSubmit={this.onSubmit}>
                     <input
-                        className={this.state.isDescriptionError ? 'error' : ''}
                         type="text"
                         placeholder="Description"
+                        className={
+                            this.state.isDescriptionError ? 'text-input error' : 'text-input'
+                        }
                         autoFocus
                         value={this.state.description}
                         onChange={this.onDescriptionChange}
                     />
                     <input
-                        className={this.state.isAmountError ? 'error' : ''}
                         type="text"
                         placeholder="Amount"
+                        className={
+                            'text-input' + this.state.isAmountError
+                                ? 'text-input error'
+                                : 'text-input'
+                        }
                         value={this.state.amount}
                         onChange={this.onAmountChange}
                     />
@@ -123,6 +129,7 @@ export default class ExpenseForm extends React.Component {
                     />
                     <textarea
                         placeholder="Add a note for your expense (optional)"
+                        className="textarea"
                         value={this.state.note}
                         onChange={this.onNoteChange}
                     />
