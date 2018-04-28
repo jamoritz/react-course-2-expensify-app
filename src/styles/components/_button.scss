@@ -2,9 +2,14 @@
     background-color: $button-bg-color;
     border: none;
     color: $button-fg-color;
+    display: inline-block;
     font-size: $font-size-large;
     font-weight: $font-weight-medium;
     line-height: 1;
     padding: $small-size;
     text-decoration: none;
+
+    &--link {
+        background-color: transparent;
+    }
 }

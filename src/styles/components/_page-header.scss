@@ -1,0 +1,18 @@
+.page-header {
+    background-color: $page-header-bg-color;
+    margin-bottom: $large-size;
+    padding: $large-size 0;
+
+    &__title {
+        margin: 0;
+        font-weight: $font-weight-medium;
+
+        span {
+            font-weight: $font-weight-bold;
+        }
+    }
+
+    &__actions {
+        margin-top: $medium-size;
+    }
+}
