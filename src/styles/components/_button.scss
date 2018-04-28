@@ -1,0 +1,10 @@
+.button {
+    background-color: $button-bg-color;
+    border: none;
+    color: $button-fg-color;
+    font-size: $font-size-large;
+    font-weight: $font-weight-medium;
+    line-height: 1;
+    padding: $small-size;
+    text-decoration: none;
+}

@@ -1,0 +1,19 @@
+.header {
+    background-color: $header-bg-color;
+
+    &__content {
+        align-items: center;
+        display: flex;
+        justify-content: space-between;
+        padding: $small-size 0;
+    }
+
+    &__title {
+        color: $button-fg-color;
+        text-decoration: none;
+
+        h1 {
+            margin: 0;
+        }
+    }
+}
