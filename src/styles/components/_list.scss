@@ -16,24 +16,54 @@
 }
 
 .list-item {
-    border: 1px solid $border-light-color;
+    align-items: center;
+    border: 1px solid darken($page-header-bg-color, 7%);
     border-top: none;
     color: $grey-3;
     display: flex;
-    align-items: center;
     flex-direction: row;
-    padding: $small-size;
-    text-decoration: none;
     justify-content: space-between;
+    padding: $medium-size;
+    text-decoration: none;
+    transition: background-color .3s ease;
+
+    &:hover {
+        background-color: $page-header-bg-color;
+    }
 
     @media (max-width: $desktop-breakpoint) {
         flex-direction: column;
+        padding: $small-size;
     }
 
-    &__message {
+    &__title {
+        margin: 0;
+        word-break: break-all;
+    }
+
+    &__sub-title {
+        color: $grey-6;
+        font-size: $font-size-small;
+    }
+
+    &__data {
+        margin: 0;
+        padding-left: $small-size;
+
+        @media (max-width: $desktop-breakpoint) {
+            margin: $small-size 0 0 0;
+            padding: 0;
+        }
+    }
+
+    &--message {
         align-items: center;
         color: $grey-6;
         justify-content: center;
         padding: $medium-size;
+
+        &:hover {
+            background-color: transparent;
+        }
     }
 }
